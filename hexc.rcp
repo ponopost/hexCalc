@@ -1,0 +1,176 @@
+
+#include "res.h"
+
+
+VERSION "0.4.1"
+
+
+ICON		"icon.bmp"
+SMALLICON	"icons.bmp"
+
+
+form id ID_MAIN_FORM at (0 0 160 160)
+	menuid ID_MAIN_MENU
+begin
+	title	"hex Calc"
+
+	popuptrigger "" id ListBitsTrg at (120 1 36 auto) rightanchor font 1
+	list "4 Bit" "8 Bit" "12 Bit" "16 Bit" "20 Bit" "24 Bit" "28 Bit" "32 Bit" id ListBitsTbl at (120 1 36 auto) nonusable visibleitems 8 font 1
+	popuplist ListBitsTrg ListBitsTbl
+
+	pushbutton	"signed"	id ButtonSigned		at (  78  58  35 11 ) group GroupSign
+	pushbutton	"unsigned"	id ButtonUnsigned	at ( 114  58  45 11 ) group GroupSign
+
+	pushbutton " "		id ButtonCalc		at (   1  18 158 39 ) disabled group GroupCalc
+
+	pushbutton	"BIN"	id ButtonBin		at ( 136 112 23 11 ) group GroupBase
+	pushbutton	"DEC"	id ButtonDec		at ( 136 124 23 11 ) group GroupBase
+	pushbutton	"HEX"	id ButtonHex		at ( 136 136 23 11 ) group GroupBase
+
+	button	""		id ButtonTen		at (   1  72 20 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0A
+	button	""		id ButtonEleven		at (  24  72 19 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0B
+	button	""		id ButtonTwelve		at (  46  72 19 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0C
+	button	""		id ButtonThirteen	at (  68  72 19 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0D
+	button	""		id ButtonFourteen	at (  90  72 19 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0E
+	button	""		id ButtonFifteen	at ( 112  72 19 15 )
+	formbitmap							at ( prevleft+6 prevtop+1 ) bitmap BITMAP_NUM0F
+
+	button	""		id ButtonSeven		at (   1  90 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM07
+	button	""		id ButtonFour		at (   1 108 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM04
+	button	""		id ButtonOne		at (   1 126 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM01
+	button	""		id ButtonZero		at (   1 144 24 15)
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM00
+
+	button	""		id ButtonEight		at (  28  90 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM08
+	button	""		id ButtonFive		at (  28 108 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM05
+	button	""		id ButtonTwo		at (  28 126 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM02
+
+	button	""		id ButtonNine		at (  55  90 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM09
+	button	""		id ButtonSix		at (  55 108 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM06
+	button	""		id ButtonThree		at (  55 126 24 15 )
+	formbitmap							at ( prevleft+8 prevtop+1 ) bitmap BITMAP_NUM03
+	button	"="		id ButtonEqual		at (  55 144 24 15 )
+
+	button	"/"		id ButtonDiv		at (  82  90 23 15 )
+	button	"*"		id ButtonMul		at (  82 108 23 15 )
+	button	"-"		id ButtonSub		at (  82 126 23 15 )
+	button	"+"		id ButtonAdd		at (  82 144 23 15 )
+
+	button	"and"	id ButtonAnd		at ( 108  90 23 15 )
+	button	"or"	id ButtonOr			at ( 108 108 23 15 )
+	button	"xor"	id ButtonXor		at ( 108 126 23 15 )
+	button	"+/-"	id ButtonFlag		at ( 108 144 23 15 )
+
+	button	"clear"	id ButtonClear		at ( 136  72 23 15 )
+	button	"bs"	id ButtonBack		at ( 136  90 23 15 )
+
+	GRAFFITISTATEINDICATOR at (145 149)
+end
+
+
+menu id ID_MAIN_MENU
+begin
+	pulldown "Edit"
+	begin
+/*
+		menuitem "Copy"  id MENU_EDIT_COPY  "C"
+		menuitem "Paste" id MENU_EDIT_PASTE "P"
+*/
+		menuitem "Clear"  id MENU_EDIT_CLEAR  "L"
+	end
+/*
+	pulldown "Math"
+	begin
+		menuitem "Signed"    id MENU_MATH_SIGN
+		menuitem "Unsigned"  id MENU_MATH_UNSG
+		menuitem SEPARATOR
+		menuitem "Bin"       id MENU_MATH_BIN
+		menuitem "Dec"       id MENU_MATH_DEC
+		menuitem "Hex"       id MENU_MATH_HEX
+	end
+*/
+	pulldown "Option"
+	begin
+		menuitem "About" id MENU_OPT_ABOUT "A"
+	end
+end
+
+
+string id ABOUT_HELP_ID ""\
+	"hex Calc\n"\
+	"\tver.0.4.1\n"\
+	"\n"\
+	"(c)1999-2002 by pono\n"\
+	"<pono@post.email.ne.jp>\n"\
+	"\n"\
+	"http://www.vector.co.jp/\n"\
+	"authors/VA001529/\n"\
+	"\n"\
+	"\n"\
+	"\n"\
+	"Graffiti Stroke\n"\
+	"\n"\
+	"	0 1 2 3 4 5 6 7 8 9\n"\
+	"	a b c d e f\n"\
+	"	+ - * / =\n"\
+	"	& (and)    | (or)    ^ (xor)\n"\
+	"	~ (+/-)\n"\
+	"\n"\
+	"\n"
+
+
+/*
+BITMAP id BITMAP_NUM00	"bmp2/num00.bmp"
+BITMAP id BITMAP_NUM01	"bmp2/num01.bmp"
+BITMAP id BITMAP_NUM02	"bmp2/num02.bmp"
+BITMAP id BITMAP_NUM03	"bmp2/num03.bmp"
+BITMAP id BITMAP_NUM04	"bmp2/num04.bmp"
+BITMAP id BITMAP_NUM05	"bmp2/num05.bmp"
+BITMAP id BITMAP_NUM06	"bmp2/num06.bmp"
+BITMAP id BITMAP_NUM07	"bmp2/num07.bmp"
+BITMAP id BITMAP_NUM08	"bmp2/num08.bmp"
+BITMAP id BITMAP_NUM09	"bmp2/num09.bmp"
+BITMAP id BITMAP_NUM0A	"bmp2/num0a.bmp"
+BITMAP id BITMAP_NUM0B	"bmp2/num0b.bmp"
+BITMAP id BITMAP_NUM0C	"bmp2/num0c.bmp"
+BITMAP id BITMAP_NUM0D	"bmp2/num0d.bmp"
+BITMAP id BITMAP_NUM0E	"bmp2/num0e.bmp"
+BITMAP id BITMAP_NUM0F	"bmp2/num0f.bmp"
+*/
+BITMAP id BITMAP_NUM00	"bmp/num00.bmp"
+BITMAP id BITMAP_NUM01	"bmp/num01.bmp"
+BITMAP id BITMAP_NUM02	"bmp/num02.bmp"
+BITMAP id BITMAP_NUM03	"bmp/num03.bmp"
+BITMAP id BITMAP_NUM04	"bmp/num04.bmp"
+BITMAP id BITMAP_NUM05	"bmp/num05.bmp"
+BITMAP id BITMAP_NUM06	"bmp/num06.bmp"
+BITMAP id BITMAP_NUM07	"bmp/num07.bmp"
+BITMAP id BITMAP_NUM08	"bmp/num08.bmp"
+BITMAP id BITMAP_NUM09	"bmp/num09.bmp"
+BITMAP id BITMAP_NUM0A	"bmp/num0a.bmp"
+BITMAP id BITMAP_NUM0B	"bmp/num0b.bmp"
+BITMAP id BITMAP_NUM0C	"bmp/num0c.bmp"
+BITMAP id BITMAP_NUM0D	"bmp/num0d.bmp"
+BITMAP id BITMAP_NUM0E	"bmp/num0e.bmp"
+BITMAP id BITMAP_NUM0F	"bmp/num0f.bmp"
+
+BITMAP id BITMAP_BIN00	"bmp/bin00.bmp"
+BITMAP id BITMAP_BIN01	"bmp/bin01.bmp"
+BITMAP id BITMAP_BIN10	"bmp/bin10.bmp"
+BITMAP id BITMAP_BIN11	"bmp/bin11.bmp"
+
+BITMAP id BITMAP_MINUS	"bmp/minus.bmp"
+
